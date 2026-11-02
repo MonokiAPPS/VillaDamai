@@ -13,7 +13,7 @@
   <div class="shell">
     <header class="topbar">
       <div class="brand"><span class="brand-mark">VK</span><div><p class="eyebrow">Villa Kamar</p><h1>Kalender reservasi</h1></div></div>
-      <button class="primary-button" id="newBookingButton">+ Check-in baru</button>
+      <div class="top-actions"><button class="secondary-button top-secondary" id="reportButton">Laporan PDF</button><button class="primary-button" id="newBookingButton">+ Check-in baru</button></div>
     </header>
 
     <main>
@@ -30,8 +30,28 @@
       <section class="calendar-card" aria-label="Kalender reservasi">
         <div class="calendar-scroll"><div id="calendar" class="calendar-grid"></div></div>
       </section>
-      <p class="footnote">Klik blok reservasi untuk mengedit atau membatalkan. Setiap kamar tidak dapat dipesan pada tanggal yang bertabrakan.</p>
+      <p class="footnote">Centang hijau menandakan kamar terisi. Klik centang untuk melihat detail, mengedit, atau membatalkan. Setiap kamar tidak dapat dipesan pada tanggal yang bertabrakan.</p>
     </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="detailsModal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+    <section class="modal detail-modal">
+      <button type="button" class="modal-close" id="closeDetails" aria-label="Tutup">×</button>
+      <p class="eyebrow">Detail reservasi</p><h2 id="detailsTitle">Kamar terisi</h2>
+      <div class="detail-list" id="detailsContent"></div>
+      <div class="modal-actions detail-actions"><span></span><button type="button" class="secondary-button" id="closeDetailsButton">Tutup</button><button type="button" class="primary-button" id="editDetailsButton">Edit reservasi</button></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+    <section class="modal report-modal">
+      <button type="button" class="modal-close" id="closeReport" aria-label="Tutup">×</button>
+      <p class="eyebrow">Ringkasan pemasukan dan hunian</p><h2 id="reportTitle">Laporan reservasi</h2>
+      <div class="form-row"><label>Dari tanggal<input id="reportFrom" type="date"></label><label>Sampai tanggal<input id="reportTo" type="date"></label></div>
+      <div class="report-summary" id="reportSummary"></div>
+      <div class="report-table-wrap"><table class="report-table"><thead><tr><th>No</th><th>Tamu</th><th>Kamar</th><th>Check-in</th><th>Check-out</th><th>DP</th></tr></thead><tbody id="reportRows"></tbody></table></div>
+      <div class="modal-actions"><span></span><button type="button" class="secondary-button" id="cancelReport">Tutup</button><button type="button" class="primary-button" id="downloadReport">Unduh PDF</button></div>
+    </section>
   </div>
 
   <div class="modal-backdrop hidden" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -47,7 +67,11 @@
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
+
+

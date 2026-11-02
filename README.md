@@ -15,3 +15,10 @@ Tanpa konfigurasi Supabase, aplikasi memakai `localStorage` di perangkat tersebu
 
 Aplikasi sengaja tidak memakai PIN/login sesuai kebutuhan. Siapa pun yang memiliki alamat GitHub Pages dapat melihat, mengubah, atau membatalkan data. Jangan memasukkan data identitas sensitif tamu.
 
+
+## Fitur laporan
+
+- Kalender menampilkan centang hijau pada setiap tanggal kamar terisi.
+- Klik centang untuk membuka detail reservasi.
+- Tombol Laporan PDF menyediakan filter periode, rekap jumlah reservasi, total DP, dan unduhan PDF.
+
