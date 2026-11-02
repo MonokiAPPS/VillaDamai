@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa Kamar | Kalender Reservasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">VK</span><div><p class="eyebrow">Villa Kamar</p><h1>Kalender reservasi</h1></div></div>
+      <button class="primary-button" id="newBookingButton">+ Check-in baru</button>
+    </header>
+
+    <main>
+      <section class="hero-card">
+        <div><p class="eyebrow">Satu tempat untuk semua admin</p><h2>Jadwal kamar, terlihat jelas.</h2><p class="hero-copy">Catat tamu, tanggal menginap, dan DP dalam satu kalender bersama.</p></div>
+        <div class="hero-note"><span class="pulse-dot"></span><span id="connectionStatus">Menyiapkan kalender…</span></div>
+      </section>
+
+      <section class="toolbar">
+        <div class="month-control"><button class="icon-button" id="previousMonth" aria-label="Bulan sebelumnya">‹</button><h3 id="monthTitle"></h3><button class="icon-button" id="nextMonth" aria-label="Bulan berikutnya">›</button><button class="today-button" id="todayButton">Hari ini</button></div>
+        <div class="legend"><span><i class="legend-dot booked"></i>Terisi</span><span><i class="legend-dot available"></i>Tersedia</span></div>
+      </section>
+
+      <section class="calendar-card" aria-label="Kalender reservasi">
+        <div class="calendar-scroll"><div id="calendar" class="calendar-grid"></div></div>
+      </section>
+      <p class="footnote">Klik blok reservasi untuk mengedit atau membatalkan. Setiap kamar tidak dapat dipesan pada tanggal yang bertabrakan.</p>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <form class="modal" id="bookingForm">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Tutup">×</button>
+      <p class="eyebrow" id="modalEyebrow">Reservasi baru</p><h2 id="modalTitle">Tambah check-in</h2>
+      <input type="hidden" id="bookingId">
+      <label>Nama tamu<input id="guestName" required maxlength="120" placeholder="Contoh: Budi Santoso"></label>
+      <div class="form-row"><label>Kamar<select id="room" required><option value="1">Kamar 1</option><option value="2">Kamar 2</option><option value="3">Kamar 3</option><option value="4">Kamar 4</option></select></label><label>Jumlah DP<input id="deposit" required inputmode="numeric" placeholder="Contoh: 500000"></label></div>
+      <div class="form-row"><label>Check-in<input id="checkIn" type="date" required></label><label>Check-out<input id="checkOut" type="date" required></label></div>
+      <p class="form-error" id="formError"></p>
+      <div class="modal-actions"><button type="button" class="danger-button hidden" id="deleteButton">Batalkan check-in</button><span></span><button type="button" class="secondary-button" id="cancelButton">Tutup</button><button class="primary-button" type="submit" id="saveButton">Simpan</button></div>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
